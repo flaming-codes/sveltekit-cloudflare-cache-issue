@@ -3,7 +3,9 @@ import type { Load } from "@sveltejs/kit/types";
 
     export const load : Load = async({fetch, params}) => {
        try {           
-        const res = await fetch(`/posts/${params.slug}.json`);       
+        const res = await fetch(`/posts/${params.slug}.json`, {
+            credentials: "omit"
+        });       
         const json = await res.json();      
 
         return {
