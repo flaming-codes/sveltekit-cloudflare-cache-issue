@@ -1,40 +1,18 @@
-# create-svelte
+# Example for bug in `cloudflare-adapter` w/ caching
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This minimal Sveltekit-app shows that deployed pages on Cloudflare Pages with a `maxage` and `credentials: 'omit'` lead to a crash on page load.
 
-## Creating a project
+The page loads fine if the user navigates to it **from another page**, i.e. using client-side routing, but crashes when the page gets called directly.
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Live demo
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+https://070b0bb1.sveltekit-cloudflare-cache-issue.pages.dev/posts/slug-101
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+### Steps to reproduce
 
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment.
+1. Deploy on Cloudflare pages
+2. Go to landing page
+3. Click **Posts Page**
+4. Click **Open posts detail page**
+5. Page loads
+6. Reload, see error
