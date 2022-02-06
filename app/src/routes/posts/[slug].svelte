@@ -6,6 +6,7 @@ import type { Load } from "@sveltejs/kit/types";
     export const load : Load = async({fetch, params}) => {
        try {           
         const res = await fetch(`/posts/${params.slug}.json`, {
+            credentials: "omit",
             headers: {
                 "Cache-Control": "max-age=604800"
             }
