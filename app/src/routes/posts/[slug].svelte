@@ -8,7 +8,7 @@ import type { Load } from "@sveltejs/kit/types";
         const res = await fetch(`/posts/${params.slug}.json`, {
             credentials: "omit",
             headers: {
-                "Cache-Control": "max-age=604800"
+                "Cache-Control": "public, max-age=604800"
             }
         });       
         const json = await res.json();      
@@ -16,7 +16,6 @@ import type { Load } from "@sveltejs/kit/types";
         return {
             status: 200,
             props: json,
-            maxage: 60 * 60 * 24
         }
        } catch(error){
            console.error(error);
