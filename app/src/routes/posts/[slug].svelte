@@ -1,10 +1,15 @@
 <script context="module" lang="ts">
 import type { Load } from "@sveltejs/kit/types";
 
+    export const prerender = true;
+
     export const load : Load = async({fetch, params}) => {
        try {           
         const res = await fetch(`/posts/${params.slug}.json`, {
-            credentials: "omit"
+            credentials: "omit",
+            headers: {
+                "Cache-Control": "max-age=604800"
+            }
         });       
         const json = await res.json();      
 
